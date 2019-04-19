@@ -1,0 +1,101 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: block;
+  /* flex-direction: row; */
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+
+.tables {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    height: 100%;
+    padding: 40px;
+    @media (max-width:500px) {
+        padding: 0px;
+    }
+}
+
+.tables__panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 1px 3px 0 rgba(112, 112, 112, 0.5);
+    background: white;
+    padding: 50px;
+    transition: all .3s ease;
+    width: 100%;
+    max-width: 1400px;
+}
+
+
+.tables__panel > div {
+    flex-grow: 1;
+    width: 100%;
+}
+
+.tables__panel .header button.modal-button{
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    font-size: 15px;
+    font-weight: 300;
+    height: 39px;
+    box-shadow: 0 1px 3px 0 rgba(112, 112, 112, 0.5);
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: 10px;
+    width: auto;
+}
+
+.tables__panel .header button.add-task-button{
+  @extend button.modal-button ;
+  width: 110px;
+  margin-left: auto;
+}
+
+.tables__panel .header button.add-task-button:disabled{
+  @extend button.modal-button;
+  box-shadow: none;
+  color: #bbb;
+  pointer-events: none;
+  border: 0;
+}
+.tables__panel .header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+    justify-content: space-between;
+}
+
+.tables__panel .header h3 {
+    flex-grow: 1;
+    margin: 0;
+    padding: 0;
+    font-size: 32px;
+    font-weight: 300;
+    color: #0d2741;
+}
+
+.task-filter-link{
+  color: #3e86f7;
+  text-decoration: underline;
+}
+
+.ReactTable .rt-tbody .rt-tr:hover {
+  cursor: pointer !important;
+}

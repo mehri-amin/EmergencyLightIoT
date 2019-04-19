@@ -1,0 +1,16 @@
+{
+  "name": "api",
+  "version": "0.0.0",
+  "description": "api for emergency lights iot",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "mqtt": "^2.18.8",
+    "mssql": "^3.3.0"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Mehri Amin"
+}
