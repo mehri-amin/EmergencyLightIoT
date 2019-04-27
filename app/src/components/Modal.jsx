@@ -27,7 +27,7 @@ class ModalExample extends React.Component {
               <div>  LightID: {this.props.user.deviceID}</div>
               <div>  Location: {this.props.user.location}</div>
               <div>  Timestamp: {this.props.user.timestamp}</div>
-              <div className="mb-3">  Status: {this.props.user.status}</div>
+              <div className="mb-3">  Main Power: {this.props.user.status}</div>
             </div>
             <Stats info={this.props.user} history={this.props.history}/>
 

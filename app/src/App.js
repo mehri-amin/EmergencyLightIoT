@@ -1,16 +1,48 @@
 import React, { Component } from 'react';
 import './App.css';
+import { Button } from 'reactstrap';
 import NavMenu from './components/Menu';
 import Tasks from './components/Tasks';
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      test: false,
+    };
+    this.toggle = this.toggle.bind(this);
+  }
 
+
+  toggle(){
+    const {test} = this.state;
+    if(!test){
+      fetch("https://james6342hololensfunctionapp1.azurewebsites.net/api/Function1?name=TEST%20ON&mac=FF:FF:FF:FF:FF:FF", {
+        'Access-Control-Allow-Origin':'*',
+        'Content-Type': '*'
+      })
+      .then(res => console.log(res))
+    }else{
+      fetch("https://james6342hololensfunctionapp1.azurewebsites.net/api/Function1?name=TEST%20OFF&mac=FF:FF:FF:FF:FF:FF", {
+        'Access-Control-Allow-Origin':'*',
+        'Content-Type': '*'
+      })
+        .then(res => console.log(res))
+    }
+    this.setState(prevState => ({
+      test: !prevState.test
+    }));
+  }
   render() {
+    const {test} = this.state;
     return (
       <div className="App">
           <NavMenu/>
           <div className="container">
             <div className="row mb-5 pt-2">
                 <h1> Emergency Light Stats</h1>
+            </div>
+            <div className="row">
+              <Button color={test ? 'primary' : 'secondary'} onClick={this.toggle} className="mb-5">Emergency Light Test</Button>
             </div>
             <div className="row">
                 <Tasks/>
