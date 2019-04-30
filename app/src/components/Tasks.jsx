@@ -48,10 +48,6 @@ class Tasks extends Component {
     this.callAPI();
   }
 
-  compoentDidUpdate(){
-    this.callAPI()
-  }
-
   update(){
     const {user} = this.state;
     let newData = this.state.data.slice();

@@ -38,30 +38,44 @@ var dbConfig = {
 
 //Function to connect to database and execute query
 var  executeQuery = function(res, query){
-     sql.connect(dbConfig, function (err) {
-         if (err) {
-                     console.log("Error while connecting database :- " + err);
-                     res.send(err);
-                  }
-                  else {
-                         // create Request object
-                         var request = new sql.Request();
-                         // query to the database
-                         request.query(query, function (err, result) {
-                           if (err) {
-                                      console.log("Error while querying database :- " + err);
-                                      res.send(err);
-                                     }
-                                     else {
-                                       res.send(result);
-                                            }
-                               });
-                       }
-      });
+     // sql.connect(dbConfig, function (err) {
+     //     if (err) {
+     //                 console.log("Error while connecting database :- " + err);
+     //                 res.send(err);
+     //              }
+     //              else {
+     //                     // create Request object
+     //                     var request = new sql.Request();
+     //                     // query to the database
+     //                     request.query(query, function (err, result) {
+     //                       if (err) {
+     //                                  console.log("Error while querying database :- " + err);
+     //                                  res.send(err);
+     //                                 }
+     //                                 else {
+     //                                   res.send(result.recordsets[0]);
+     //                                        }
+     //
+     //                           });
+     //                   }
+     //  });
+     new sql.ConnectionPool(dbConfig).connect().then(pool => {
+       return pool.request().query(query)
+     }).then(result => {
+       let rows = result.recordset
+       res.setHeader('Access-Control-Allow-Origin', '*')
+       res.status(200).json(rows);
+       sql.close()
+     }).catch(err=>{
+       res.status(500).send({message: "${err}"})
+       sql.close();
+     });
+
 }
 
 //GET API
 app.get("/api/measurements", function(req , res){
-                var query = "select * from [dbo].[Measurement]";
+                var query = "select top 20 * from [dbo].[Measurement] order by [MeasurementID] desc";
+                // var query = "select * from [dbo].[Measurement]";
                 executeQuery (res, query);
 });
