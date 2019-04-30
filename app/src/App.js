@@ -42,7 +42,7 @@ class App extends Component {
                 <h1> Emergency Light Stats</h1>
             </div>
             <div className="row">
-            {/*  <Button color={test ? 'primary' : 'secondary'} onClick={this.toggle} className="mb-5">Emergency Light Test</Button>*/}
+            <Button color={test ? 'primary' : 'secondary'} onClick={this.toggle} className="mb-5">Emergency Light Test</Button>
             </div>
             <div className="row">
                 <Tasks/>
